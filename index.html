@@ -31,6 +31,9 @@
             font-family: 'Inter', sans-serif;
             background-color: #FFFBEA; /* Fundo suave */
             color: #4A4A4A; /* Cor de texto mais suave */
+            /* Adiciona uma textura sutil de fundo ao body */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 0L0 100h100V0zM0 0l100 100V0z' fill='%23FFD233' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 20px 20px;
         }
         .text-mango-dark { color: #FFA500; }
         .text-mango-light { color: #FFD233; }
@@ -39,7 +42,6 @@
         .border-mango-dark { border-color: #FFA500; }
         .border-mango-vibrant { border-color: #FF4500; }
         .bg-hero {
-            /* Imagem de fundo da página inicial */
             background-image: url('capa mango.png');
             background-size: cover;
             background-position: center;
@@ -50,6 +52,41 @@
         .card:nth-child(4) { animation-delay: 0.4s; }
         .card:nth-child(5) { animation-delay: 0.5s; }
         .card:nth-child(6) { animation-delay: 0.6s; }
+
+        .active-link {
+            border-bottom: 2px solid #FF4500;
+            padding-bottom: 4px;
+            color: #FF4500;
+            font-weight: 700;
+        }
+
+        /* Adiciona textura sutil às seções amarelas */
+        .bg-yellow-200 {
+            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                              linear-gradient(225deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                              linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                              linear-gradient(315deg, rgba(255, 255, 255, 0.2) 25%, #FFECB3 25%);
+            background-size: 10px 10px;
+            background-position: 0 0, 0 0, 5px 5px, 5px 5px;
+        }
+        .bg-yellow-100 {
+            background-image: radial-gradient(#FFFBEA 15%, transparent 15%),
+                              radial-gradient(#FFFBEA 15%, transparent 15%);
+            background-color: #FFF3CD;
+            background-size: 10px 10px;
+            background-position: 0 0, 5px 5px;
+        }
+
+        /* Classes para o modal de confirmação */
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -61,10 +98,10 @@
                 <img src="Logotipo png.png" alt="Logo Mango Lôko" class="h-full">
             </a>
             <div class="hidden md:flex items-center space-x-6">
-                <a href="#cardapio" class="hover:text-mango-dark transition-colors duration-200 font-semibold">Cardápio</a>
-                <a href="#sobre" class="hover:text-mango-dark transition-colors duration-200 font-semibold">Sobre</a>
-                <a href="#pedido" class="hover:text-mango-dark transition-colors duration-200 font-semibold">Como Pedir</a>
-                <a href="#contato" class="hover:text-mango-dark transition-colors duration-200 font-semibold">Contato</a>
+                <a href="#cardapio" class="nav-link hover:text-mango-dark transition-colors duration-200 font-semibold">Cardápio</a>
+                <a href="#sobre" class="nav-link hover:text-mango-dark transition-colors duration-200 font-semibold">Sobre</a>
+                <a href="#pedido" class="nav-link hover:text-mango-dark transition-colors duration-200 font-semibold">Como Pedir</a>
+                <a href="#contato" class="nav-link hover:text-mango-dark transition-colors duration-200 font-semibold">Contato</a>
                 <a href="https://wa.me/5591984036513?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20de%20manga%20temperada!" target="_blank" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 animate-pulse-attention inline-block">
                     Peça Agora
                 </a>
@@ -134,7 +171,7 @@
                         <p class="text-xs italic text-gray-500 mb-4">Ingredientes: Pimenta chili, limão siciliano, sal rosa, coentro picado, toque de açúcar mascavo</p>
                         <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
                         <p class="text-xs italic text-center text-gray-500 mb-4">“Atreva-se a sentir o fogo do sabor!”</p>
-                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300" data-product="Manga Mexicana">
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Manga Mexicana">
                             Peça Agora
                         </button>
                     </div>
@@ -146,7 +183,7 @@
                         <p class="text-xs italic text-gray-500 mb-4">Ingredientes: Mel orgânico, canela, raspas de limão, granola crocante</p>
                         <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
                         <p class="text-xs italic text-center text-gray-500 mb-4">“O clássico que conquista paladares!”</p>
-                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300" data-product="Manga Americana">
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Manga Americana">
                             Peça Agora
                         </button>
                     </div>
@@ -158,7 +195,7 @@
                         <p class="text-xs italic text-gray-500 mb-4">Ingredientes: Suco de laranja, raspas de limão, hortelã fresca, pitada de pimenta-do-reino</p>
                         <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
                         <p class="text-xs italic text-center text-gray-500 mb-4">“Sinta a alegria em cada mordida!”</p>
-                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300" data-product="Manga Colombiana">
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Manga Colombiana">
                             Peça Agora
                         </button>
                     </div>
@@ -170,7 +207,7 @@
                         <p class="text-xs italic text-gray-500 mb-4">Ingredientes: Pimenta biquinho, gengibre ralado, limão tahiti, açúcar demerara, lascas de coco</p>
                         <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
                         <p class="text-xs italic text-center text-gray-500 mb-4">“Só para quem é Lôko de verdade!”</p>
-                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300" data-product="Manga Lôko">
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Manga Lôko">
                             Peça Agora
                         </button>
                     </div>
@@ -182,7 +219,7 @@
                         <p class="text-xs italic text-gray-500 mb-4">Ingredientes: Sal, limão, açúcar cristal, pimenta-do-reino suave</p>
                         <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
                         <p class="text-xs italic text-center text-gray-500 mb-4">“O sabor que conquistou Benevides-PA!”</p>
-                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300" data-product="Manga Clássica">
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Manga Clássica">
                             Peça Agora
                         </button>
                     </div>
@@ -194,7 +231,7 @@
                         <p class="text-xs italic text-gray-500 mb-4">Ingredientes: Tucupi reduzido, jambu fresco, castanha do Pará triturada, pimenta-de-cheiro, limão</p>
                         <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
                         <p class="text-xs italic text-center text-gray-500 mb-4">“O sabor da Amazônia na sua manga!”</p>
-                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300" data-product="Manga Paraense">
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Manga Paraense">
                             Peça Agora
                         </button>
                     </div>
@@ -252,40 +289,47 @@
                             <label for="address" class="block text-sm font-medium text-gray-700">Endereço de Entrega</label>
                             <textarea id="address" name="address" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant"></textarea>
                         </div>
-                        <div>
-                            <label for="ripeness-select" class="block text-sm font-medium text-gray-700">Escolha o Ponto da Manga</label>
-                            <select id="ripeness-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
-                                <option value="" disabled selected>Selecione o ponto...</option>
-                                <option value="Verde">Verde</option>
-                                <option value="De Vez">De Vez</option>
-                                <option value="Madura">Madura</option>
-                            </select>
+                        
+                        <!-- Campos para adicionar item dinamicamente -->
+                        <div class="bg-yellow-200 p-4 rounded-xl">
+                            <h4 class="font-bold text-lg mb-2 text-center text-mango-dark">Adicionar Sabor</h4>
+                            <div>
+                                <label for="product-select" class="block text-sm font-medium text-gray-700">Sabor</label>
+                                <select id="product-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
+                                    <option value="" disabled selected>Selecione um sabor...</option>
+                                    <option value="Manga Mexicana" data-price="12">Manga Mexicana</option>
+                                    <option value="Manga Americana" data-price="12">Manga Americana</option>
+                                    <option value="Manga Colombiana" data-price="12">Manga Colombiana</option>
+                                    <option value="Manga Lôko" data-price="12">Manga Lôko</option>
+                                    <option value="Manga Clássica" data-price="12">Manga Clássica</option>
+                                    <option value="Manga Paraense" data-price="12">Manga Paraense</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="size-select" class="block text-sm font-medium text-gray-700">Tamanho</label>
+                                <select id="size-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
+                                    <option value="" disabled selected>Selecione um tamanho...</option>
+                                    <option value="Pote P (120g)" data-price="12">Pote P (120g) - R$12,00</option>
+                                    <option value="Pote M (250g)" data-price="16">Pote M (250g) - R$16,00</option>
+                                    <option value="Pote G (500g)" data-price="22">Pote G (500g) - R$22,00</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="ripeness-select" class="block text-sm font-medium text-gray-700">Ponto da Manga</label>
+                                <select id="ripeness-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
+                                    <option value="" disabled selected>Selecione o ponto...</option>
+                                    <option value="Verde">Verde</option>
+                                    <option value="De Vez">De Vez</option>
+                                    <option value="Madura">Madura</option>
+                                </select>
+                            </div>
+                            <button type="button" id="add-to-order-btn" class="mt-4 w-full bg-mango-dark hover:bg-orange-600 text-white font-bold py-3 rounded-full transition-colors duration-300">
+                                Adicionar ao Pedido
+                            </button>
                         </div>
-                        <div>
-                            <label for="product-select" class="block text-sm font-medium text-gray-700">Escolha o Sabor</label>
-                            <select id="product-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
-                                <option value="" disabled selected>Selecione um sabor...</option>
-                                <option value="Manga Mexicana">Manga Mexicana</option>
-                                <option value="Manga Americana">Manga Americana</option>
-                                <option value="Manga Colombiana">Manga Colombiana</option>
-                                <option value="Manga Lôko">Manga Lôko</option>
-                                <option value="Manga Clássica">Manga Clássica</option>
-                                <option value="Manga Paraense">Manga Paraense</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="size-select" class="block text-sm font-medium text-gray-700">Escolha o Tamanho</label>
-                            <select id="size-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
-                                <option value="" disabled selected>Selecione um tamanho...</option>
-                                <option value="Pote P (120g) - R$12,00" data-price="12">Pote P (120g) - R$12,00</option>
-                                <option value="Pote M (250g) - R$16,00" data-price="16">Pote M (250g) - R$16,00</option>
-                                <option value="Pote G (500g) - R$22,00" data-price="22">Pote G (500g) - R$22,00</option>
-                            </select>
-                        </div>
-                        <button type="button" id="add-to-order-btn" class="w-full bg-mango-dark hover:bg-orange-600 text-white font-bold py-3 rounded-full transition-colors duration-300">
-                            Adicionar ao Pedido
-                        </button>
-                        <div class="space-y-2" id="order-summary">
+
+                        <!-- Resumo do Pedido -->
+                        <div class="space-y-2 mt-4" id="order-summary">
                             <!-- Pedidos serão listados aqui -->
                         </div>
                         <button type="submit" id="submit-order-btn" class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300">
@@ -352,7 +396,7 @@
     </footer>
 
     <!-- Modal para mensagens -->
-    <div id="message-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
+    <div id="message-modal" class="modal fixed inset-0 bg-black/50 items-center justify-center p-4 z-50">
         <div class="bg-white p-8 rounded-2xl shadow-xl max-w-sm w-full text-center border-t-4 border-mango-vibrant">
             <div id="modal-content" class="text-lg font-semibold text-gray-800 mb-4"></div>
             <button id="modal-close-btn" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">
@@ -366,6 +410,8 @@
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.querySelectorAll('#mobile-menu a');
+        const desktopNavLinks = document.querySelectorAll('.nav-link');
+        const allNavLinks = [...navLinks, ...desktopNavLinks];
 
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
@@ -374,6 +420,26 @@
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Lógica para destacar o link ativo no menu
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            allNavLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.href.includes(current)) {
+                    link.classList.add('active-link');
+                }
             });
         });
 
@@ -388,6 +454,7 @@
         const modalCloseBtn = document.getElementById('modal-close-btn');
         let orderItems = [];
 
+        // Adiciona um item ao pedido
         addToOrderBtn.addEventListener('click', () => {
             const product = productSelect.value;
             const size = sizeSelect.value;
@@ -395,20 +462,34 @@
             const price = sizeSelect.options[sizeSelect.selectedIndex]?.dataset.price;
             
             if (!product || !size || !ripeness) {
-                modalContent.textContent = "Por favor, selecione um sabor, um tamanho e o ponto da manga.";
-                messageModal.classList.remove('hidden');
-                messageModal.classList.add('flex');
+                showMessage("Por favor, selecione um sabor, um tamanho e o ponto da manga.");
                 return;
             }
 
             const item = { product, size, ripeness, price: parseFloat(price) };
             orderItems.push(item);
             renderOrderSummary();
+            
+            // Limpa os seletores após adicionar
             productSelect.value = "";
             sizeSelect.value = "";
             ripenessSelect.value = "";
         });
 
+        // Adiciona item diretamente dos cards do cardápio
+        document.querySelectorAll('.add-to-order').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const productName = event.target.dataset.product;
+                const item = { product: productName, size: 'Pote P (120g)', ripeness: 'De Vez', price: 12 };
+                orderItems.push(item);
+                renderOrderSummary();
+                // Rola suavemente para a seção de pedido
+                document.getElementById('pedido').scrollIntoView({ behavior: 'smooth' });
+                showMessage(`${productName} adicionado ao seu pedido!`, 'bg-green-500');
+            });
+        });
+
+        // Renderiza o resumo do pedido na página
         function renderOrderSummary() {
             orderSummary.innerHTML = '';
             let total = 0;
@@ -420,12 +501,15 @@
             } else {
                 orderItems.forEach((item, index) => {
                     const itemElement = document.createElement('div');
-                    itemElement.classList.add('flex', 'justify-between', 'items-center', 'bg-white', 'p-3', 'rounded-lg', 'shadow-sm');
+                    itemElement.classList.add('flex', 'justify-between', 'items-center', 'bg-white', 'p-3', 'rounded-lg', 'shadow-sm', 'border-l-4', 'border-mango-dark');
                     itemElement.innerHTML = `
-                        <span>${item.product} - ${item.size} (${item.ripeness})</span>
+                        <div>
+                            <p class="font-semibold">${item.product}</p>
+                            <p class="text-xs text-gray-500">${item.size} (${item.ripeness})</p>
+                        </div>
                         <div class="flex items-center space-x-2">
-                            <span>R$${item.price.toFixed(2).replace('.', ',')}</span>
-                            <button type="button" data-index="${index}" class="remove-item-btn text-red-500 hover:text-red-700">
+                            <span class="font-bold text-mango-vibrant">R$${item.price.toFixed(2).replace('.', ',')}</span>
+                            <button type="button" data-index="${index}" class="remove-item-btn text-red-500 hover:text-red-700 transition-colors duration-200">
                                 <i class="fas fa-times-circle"></i>
                             </button>
                         </div>
@@ -440,6 +524,7 @@
             }
         }
         
+        // Remove um item do pedido
         orderSummary.addEventListener('click', (event) => {
             if (event.target.closest('.remove-item-btn')) {
                 const index = event.target.closest('.remove-item-btn').dataset.index;
@@ -448,13 +533,12 @@
             }
         });
 
+        // Lida com o envio do formulário
         orderForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
             if (orderItems.length === 0) {
-                modalContent.textContent = "Seu pedido está vazio. Adicione um item antes de enviar.";
-                messageModal.classList.remove('hidden');
-                messageModal.classList.add('flex');
+                showMessage("Seu pedido está vazio. Adicione um item antes de enviar.");
                 return;
             }
             
@@ -469,29 +553,26 @@
             const message = `Olá, Mango Lôko! Meu nome é ${name} e gostaria de fazer o seguinte pedido:\n\n*Pedido:* \n${orderText}\n\n*Valor Total:* R$${total.toFixed(2).replace('.', ',')}\n\n*Endereço:* ${address}\n\n*Telefone para contato:* ${phone}`;
             const whatsappUrl = `https://wa.me/5591984036513?text=${encodeURIComponent(message)}`;
 
-            // Mostrar modal de confirmação
-            modalContent.textContent = "Seu pedido será enviado via WhatsApp. Confirme para continuar.";
-            messageModal.classList.remove('hidden');
-            messageModal.classList.add('flex');
-
-            // Adicionar listener para o botão de fechar o modal
-            modalCloseBtn.onclick = () => {
-                messageModal.classList.add('hidden');
-                messageModal.classList.remove('flex');
-            };
-
-            // Redirecionar para o WhatsApp após um pequeno delay para que o usuário possa ler o modal
+            // Exibe o modal de confirmação e redireciona
+            showMessage("Seu pedido será enviado via WhatsApp. Confirme para continuar.");
             setTimeout(() => {
                 window.open(whatsappUrl, '_blank');
             }, 1000);
         });
 
-        document.querySelectorAll('#cardapio button').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const product = event.target.dataset.product;
-                productSelect.value = product;
-                window.location.href = '#pedido';
-            });
+        // Mostra o modal de mensagem
+        function showMessage(message) {
+            modalContent.textContent = message;
+            messageModal.classList.add('is-active');
+            messageModal.classList.remove('hidden');
+            messageModal.classList.add('flex');
+        }
+
+        // Fecha o modal de mensagem
+        modalCloseBtn.addEventListener('click', () => {
+            messageModal.classList.remove('is-active');
+            messageModal.classList.add('hidden');
+            messageModal.classList.remove('flex');
         });
 
         renderOrderSummary();
