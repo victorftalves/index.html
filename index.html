@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mango Lôko - O Sabor que Vicia</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FFFBEA;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #FFFBEA; }
         .text-mango-dark { color: #FFA500; }
         .text-mango-light { color: #FFD233; }
         .bg-mango-dark { background-color: #FFA500; }
@@ -21,60 +16,41 @@
         .bg-mango-vibrant { background-color: #FF4500; }
         .border-mango-dark { border-color: #FFA500; }
         .border-mango-vibrant { border-color: #FF4500; }
-        .bg-hero {
-            background-image: url('https://placehold.co/1920x1080/FFC107/FFFFFF?text=A+Melhor+Manga+Temperada');
-            background-size: cover;
-            background-position: center;
-        }
-        /* Animações */
-        @keyframes fade-in {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-            animation: fade-in 1s ease-out forwards;
-        }
+        .bg-hero { background-image: url('https://placehold.co/1920x1080/FFC107/FFFFFF?text=A+Melhor+Manga+Temperada'); background-size: cover; background-position: center; }
+        .animate-fade-in { animation: fadeIn 2s ease-in forwards; opacity: 0; }
+        @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- Navbar Fixa -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-md p-4 transition-all duration-300 ease-in-out">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-md p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#home" class="flex items-center justify-center h-12 w-auto">
-                <img src="Logotipo png.png" alt="Logo Mango Lôko" class="h-20 w-auto transition-transform duration-500 hover:scale-105">
-            </a>
+            <a href="#home"><img src="Logotipo png.png" alt="Logo Mango Lôko" class="h-24 w-auto"></a>
             <div class="hidden md:flex items-center space-x-6">
-                <a href="#cardapio" class="hover:text-mango-dark transition-colors duration-200">Cardápio</a>
-                <a href="#sobre" class="hover:text-mango-dark transition-colors duration-200">Sobre</a>
-                <a href="#pedido" class="hover:text-mango-dark transition-colors duration-200">Como Pedir</a>
-                <a href="#contato" class="hover:text-mango-dark transition-colors duration-200">Contato</a>
-                <a href="https://wa.me/5591999999999?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20de%20manga%20temperada!" target="_blank" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-block">
-                    Peça Agora
-                </a>
+                <a href="#cardapio" class="hover:text-mango-dark transition-colors">Cardápio</a>
+                <a href="#sobre" class="hover:text-mango-dark transition-colors">Sobre</a>
+                <a href="#pedido" class="hover:text-mango-dark transition-colors">Como Pedir</a>
+                <a href="#contato" class="hover:text-mango-dark transition-colors">Contato</a>
+                <a href="https://wa.me/5591999999999?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20de%20manga%20temperada!" target="_blank" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all transform hover:scale-105">Peça Agora</a>
             </div>
-            <button id="mobile-menu-btn" class="md:hidden text-2xl text-mango-vibrant focus:outline-none">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-mango-vibrant focus:outline-none"><i class="fas fa-bars"></i></button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden mt-4 bg-white/90 rounded-b-lg shadow-inner">
-            <a href="#cardapio" class="block py-2 px-4 text-center hover:bg-gray-100 transition-colors duration-200">Cardápio</a>
-            <a href="#sobre" class="block py-2 px-4 text-center hover:bg-gray-100 transition-colors duration-200">Sobre</a>
-            <a href="#pedido" class="block py-2 px-4 text-center hover:bg-gray-100 transition-colors duration-200">Como Pedir</a>
-            <a href="#contato" class="block py-2 px-4 text-center hover:bg-gray-100 transition-colors duration-200">Contato</a>
+            <a href="#cardapio" class="block py-2 px-4 text-center hover:bg-gray-100">Cardápio</a>
+            <a href="#sobre" class="block py-2 px-4 text-center hover:bg-gray-100">Sobre</a>
+            <a href="#pedido" class="block py-2 px-4 text-center hover:bg-gray-100">Como Pedir</a>
+            <a href="#contato" class="block py-2 px-4 text-center hover:bg-gray-100">Contato</a>
         </div>
     </nav>
-    
-    <!-- Main -->
+
     <main class="pt-20">
-        <!-- Hero Section -->
-        <section id="home" class="bg-hero bg-cover bg-center h-[80vh] flex items-center justify-center p-4 text-center">
-            <div class="bg-black/40 p-8 rounded-2xl max-w-2xl text-white backdrop-blur-sm animate-fade-in">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">🌶️ A <span class="text-mango-light">primeira</span> marca de mangas temperadas de Benevides-PA</h1>
+        <!-- Hero -->
+        <section id="home" class="bg-hero bg-cover bg-center h-[80vh] flex items-center justify-center p-4">
+            <div class="bg-black/40 p-8 rounded-2xl max-w-2xl text-white backdrop-blur-sm text-center">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 animate-fade-in">🌶️ A <span class="text-mango-light">primeira</span> marca de mangas temperadas de Benevides-PA</h1>
                 <p class="text-lg sm:text-xl font-medium mb-8">🍋 Experimente o sabor que todo mundo está falando!</p>
-                <a href="https://wa.me/5591999999999?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20de%20manga%20temperada!" target="_blank" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-block">
-                    Peça Já no WhatsApp
-                </a>
+                <a href="https://wa.me/5591999999999?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20de%20manga%20temperada!" target="_blank" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all transform hover:scale-105">Peça Já no WhatsApp</a>
             </div>
         </section>
 
@@ -83,17 +59,17 @@
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8">Por que Mango Lôko?</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-mango-vibrant transition-all hover:scale-105 duration-300">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-mango-vibrant hover:scale-105 transition-all duration-300">
                         <i class="fas fa-star text-4xl text-mango-vibrant mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Sabor Único</h3>
                         <p class="text-gray-600">Temperos artesanais que explodem na boca.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-mango-vibrant transition-all hover:scale-105 duration-300">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-mango-vibrant hover:scale-105 transition-all duration-300">
                         <i class="fas fa-seedling text-4xl text-mango-vibrant mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Pioneirismo</h3>
                         <p class="text-gray-600">A primeira marca de mangas temperadas de Benevides-PA.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-mango-vibrant transition-all hover:scale-105 duration-300">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-mango-vibrant hover:scale-105 transition-all duration-300">
                         <i class="fas fa-truck-fast text-4xl text-mango-vibrant mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Entrega Rápida</h3>
                         <p class="text-gray-600">Peça e receba quentinho em minutos.</p>
@@ -107,31 +83,105 @@
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-mango-dark">Nosso Cardápio</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
-                    <!-- Cards dos produtos - mantidos como no código original -->
-                    <!-- ... todos os cards permanecem intactos ... -->
+                    <!-- Produtos -->
+                    <!-- Manga Mexicana -->
+                    <div class="bg-gray-100 p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                        <img src="https://placehold.co/600x400/FFA500/FFFFFF?text=Manga+Mexicana" alt="Manga Mexicana" class="w-full h-48 object-cover rounded-xl mb-4">
+                        <h3 class="text-xl font-bold mb-2">Manga Mexicana 🌶️</h3>
+                        <p class="text-gray-600 text-sm mb-2">Ingredientes: Pimenta chili, limão siciliano, sal rosa, coentro picado, toque de açúcar mascavo</p>
+                        <p class="text-gray-600 text-sm mb-4">Picante, cítrica e irresistível. Um clássico do México que desafia seu paladar.</p>
+                        <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 rounded-full transition-colors duration-300">Peça Agora</button>
+                    </div>
+                    <!-- Manga Americana -->
+                    <div class="bg-gray-100 p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                        <img src="https://placehold.co/600x400/FFD233/FFFFFF?text=Manga+Americana" alt="Manga Americana" class="w-full h-48 object-cover rounded-xl mb-4">
+                        <h3 class="text-xl font-bold mb-2">Manga Americana 🍯</h3>
+                        <p class="text-gray-600 text-sm mb-2">Ingredientes: Mel orgânico, canela, raspas de limão, granola crocante</p>
+                        <p class="text-gray-600 text-sm mb-4">Doce, crocante e equilibrada. Um mix que combina tradição americana com diversão tropical.</p>
+                        <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 rounded-full transition-colors duration-300">Peça Agora</button>
+                    </div>
+                    <!-- Manga Colombiana -->
+                    <div class="bg-gray-100 p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                        <img src="https://placehold.co/600x400/FFD233/FFFFFF?text=Manga+Colombiana" alt="Manga Colombiana" class="w-full h-48 object-cover rounded-xl mb-4">
+                        <h3 class="text-xl font-bold mb-2">Manga Colombiana 🍋</h3>
+                        <p class="text-gray-600 text-sm mb-2">Ingredientes: Suco de laranja, raspas de limão, hortelã fresca, pitada de pimenta-do-reino</p>
+                        <p class="text-gray-600 text-sm mb-4">Refrescante e vibrante. Cada mordida é uma festa tropical!</p>
+                        <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 rounded-full transition-colors duration-300">Peça Agora</button>
+                    </div>
+                    <!-- Manga Lôko -->
+                    <div class="bg-gray-100 p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                        <img src="https://placehold.co/600x400/FF4500/FFFFFF?text=Manga+Lôko" alt="Manga Lôko" class="w-full h-48 object-cover rounded-xl mb-4">
+                        <h3 class="text-xl font-bold mb-2">Manga Lôko 😜</h3>
+                        <p class="text-gray-600 text-sm mb-2">Ingredientes: Pimenta biquinho, gengibre ralado, limão tahiti, açúcar demerara, lascas de coco</p>
+                        <p class="text-gray-600 text-sm mb-4">Ousada, surpreendente e viciante. Só para os corajosos.</p>
+                        <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 rounded-full transition-colors duration-300">Peça Agora</button>
+                    </div>
+                    <!-- Manga Clássica -->
+                    <div class="bg-gray-100 p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                        <img src="https://placehold.co/600x400/FFD233/FFFFFF?text=Manga+Clássica" alt="Manga Clássica" class="w-full h-48 object-cover rounded-xl mb-4">
+                        <h3 class="text-xl font-bold mb-2">Manga Clássica 🍃</h3>
+                        <p class="text-gray-600 text-sm mb-2">Ingredientes: Sal, limão, açúcar cristal, pimenta-do-reino suave</p>
+                        <p class="text-gray-600 text-sm mb-4">Tradicional, simples e viciante. O sabor que conquistou Benevides-PA.</p>
+                        <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 rounded-full transition-colors duration-300">Peça Agora</button>
+                    </div>
+                    <!-- Manga Paraense -->
+                    <div class="bg-gray-100 p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                        <img src="https://placehold.co/600x400/FF4500/FFFFFF?text=Manga+Paraense" alt="Manga Paraense" class="w-full h-48 object-cover rounded-xl mb-4">
+                        <h3 class="text-xl font-bold mb-2">Manga Paraense 🌿</h3>
+                        <p class="text-gray-600 text-sm mb-2">Ingredientes: Tucupi reduzido, jambu fresco, castanha do Pará triturada, pimenta-de-cheiro, limão</p>
+                        <p class="text-gray-600 text-sm mb-4">Uma homenagem ao Pará! Sabor amazônico que mistura acidez, frescor e tradição regional.</p>
+                        <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
+                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 rounded-full transition-colors duration-300">Peça Agora</button>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Sobre -->
-        <section id="sobre" class="bg-yellow-100 py-16">
-            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
-                <div class="md:w-1/2">
-                    <img src="https://placehold.co/600x400/FFD233/FFFFFF?text=Bastidores+Mango+Lôko" alt="Bastidores da Mango Lôko, mostrando o processo de preparo" class="rounded-3xl shadow-2xl w-full h-auto">
-                </div>
-                <div class="md:w-1/2 text-center md:text-left">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-mango-dark">Nossa História</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">A Mango Lôko nasceu para transformar mangas comuns em explosão de sabor! Pioneiros em Benevides-PA, cada mordida é uma experiência única. 😎</p>
-                    <a href="#cardapio" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300 inline-block">
-                        Conheça nossos sabores
-                    </a>
-                </div>
+        <section id="sobre" class="py-16 bg-yellow-100">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-mango-dark mb-6">Sobre a Mango Lôko</h2>
+                <p class="text-gray-700 max-w-3xl mx-auto mb-4">Mango Lôko nasceu do amor pela fruta e pelo tempero perfeito. Nosso objetivo é levar uma explosão de sabor para todos, com ingredientes frescos e de qualidade, sempre respeitando a tradição amazônica.</p>
+                <p class="text-gray-700 max-w-3xl mx-auto">Cada manga temperada é feita com cuidado e paixão, pensando na experiência única de quem prova. Da primeira mordida ao último gole de suco, você vai se sentir em uma festa de sabores!</p>
             </div>
         </section>
 
-        <!-- Promoções / Como Pedir / Contato / Footer / Scripts -->
-        <!-- ... Mantidos exatamente como no código original ... -->
+        <!-- Como Pedir -->
+        <section id="pedido" class="py-16 bg-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-mango-dark mb-6">Como Pedir</h2>
+                <p class="text-gray-700 mb-8">É simples! Basta clicar no botão de WhatsApp, escolher seu sabor preferido e fazer seu pedido em poucos minutos. Receba quentinho na sua casa ou trabalho!</p>
+                <a href="https://wa.me/5591999999999?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20de%20manga%20temperada!" target="_blank" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all transform hover:scale-105">Peça Agora</a>
+            </div>
+        </section>
 
+        <!-- Contato -->
+        <section id="contato" class="py-16 bg-yellow-200">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-mango-dark mb-6">Contato</h2>
+                <p class="text-gray-700 mb-4">Whatsapp: <a href="https://wa.me/5591999999999" class="text-mango-vibrant font-bold">+55 91 99999-9999</a></p>
+                <p class="text-gray-700 mb-4">Instagram: <a href="https://instagram.com/mangoloko" class="text-mango-vibrant font-bold">@mangoloko</a></p>
+            </div>
+        </section>
     </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-mango-dark text-white py-6 text-center">
+        <p>&copy; 2025 Mango Lôko. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script mobile menu -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
