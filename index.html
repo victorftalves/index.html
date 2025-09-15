@@ -1,42 +1,172 @@
-<!-- Navbar -->
-<a href="#home" class="h-12 w-auto">
-    <img src="Logotipo png.png de manga" alt="Logo Mango Lôko" class="h-full">
-</a>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mango Lôko</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
 
-<!-- Botão de Peça Agora -->
-<a href="https://wa.me/5591984036513?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20de%20manga%20temperada!" target="_blank" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-block">
-    Peça Agora
-</a>
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-yellow-50 font-sans text-gray-800">
 
-<!-- Hero Section -->
-<a href="https://wa.me/5591984036513?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20de%20manga%20temperada!" target="_blank" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-block">
-    Peça Já no WhatsApp
-</a>
+    <!-- Navbar -->
+    <nav class="bg-yellow-400 p-4 flex justify-between items-center fixed w-full z-50 shadow-lg">
+        <a href="#home" class="h-12 w-auto">
+            <img src="Logotipo png.png" alt="Logo Mango Lôko" class="h-full">
+        </a>
+        <div class="hidden md:flex space-x-6">
+            <a href="#home" class="hover:text-red-600 font-bold">Home</a>
+            <a href="#cardapio" class="hover:text-red-600 font-bold">Cardápio</a>
+            <a href="#contato" class="hover:text-red-600 font-bold">Contato</a>
+        </div>
+        <div class="md:hidden">
+            <button id="mobile-menu-btn" class="text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-<!-- Seção de Contato -->
-<div class="flex justify-center space-x-6 mb-8">
-    <a href="https://instagram.com/mangolokopa" target="_blank" class="text-4xl text-mango-vibrant hover:text-red-600 transition-colors duration-300">
-        <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://tiktok.com/mangoloko" target="_blank" class="text-4xl text-mango-vibrant hover:text-red-600 transition-colors duration-300">
-        <i class="fab fa-tiktok"></i>
-    </a>
-    <a href="https://wa.me/5591984036513" target="_blank" class="text-4xl text-mango-vibrant hover:text-red-600 transition-colors duration-300">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-</div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 flex flex-col items-center justify-center text-2xl space-y-6 text-white">
+        <a href="#home" class="hover:text-red-600">Home</a>
+        <a href="#cardapio" class="hover:text-red-600">Cardápio</a>
+        <a href="#contato" class="hover:text-red-600">Contato</a>
+        <button id="mobile-menu-close" class="text-xl mt-4">Fechar</button>
+    </div>
 
-<!-- Footer -->
-<img src="Logotipo png.png" alt="Logo Mango Lôko" class="h-10 w-auto mx-auto mb-4">
+    <!-- Hero Section -->
+    <section id="home" class="h-screen flex flex-col justify-center items-center text-center px-4 bg-yellow-200">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-orange-600 mb-6">Mango Lôko</h1>
+        <p class="text-xl md:text-2xl mb-6">Mangas temperadas com sabor e alegria!</p>
+        <a href="#cardapio" class="bg-orange-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+            Peça Já no WhatsApp
+        </a>
+    </section>
 
-<div class="flex justify-center space-x-4">
-    <a href="https://instagram.com/mangolokopa" target="_blank" class="text-xl hover:text-gray-200 transition-colors duration-200">
-        <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://tiktok.com/mangoloko" target="_blank" class="text-xl hover:text-gray-200 transition-colors duration-200">
-        <i class="fab fa-tiktok"></i>
-    </a>
-    <a href="https://wa.me/5591984036513" target="_blank" class="text-xl hover:text-gray-200 transition-colors duration-200">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-</div>
+    <!-- Cardápio -->
+    <section id="cardapio" class="py-20 px-6 md:px-20 bg-yellow-50">
+        <h2 class="text-4xl font-bold text-center mb-12">Nosso Cardápio</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card de exemplo -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 animate-fade-in">
+                <img src="manga1.png" alt="Manga Tropical" class="rounded-xl mb-4">
+                <h3 class="text-2xl font-bold mb-2">Manga Tropical</h3>
+                <p class="mb-4">Manga suculenta temperada com limão e pimenta.</p>
+                <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 pedido-btn" data-sabor="Manga Tropical">
+                    Peça Agora
+                </button>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 animate-fade-in">
+                <img src="manga2.png" alt="Manga Picante" class="rounded-xl mb-4">
+                <h3 class="text-2xl font-bold mb-2">Manga Picante</h3>
+                <p class="mb-4">Para quem gosta de um toque de pimenta extra.</p>
+                <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 pedido-btn" data-sabor="Manga Picante">
+                    Peça Agora
+                </button>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 animate-fade-in">
+                <img src="manga3.png" alt="Manga Doce" class="rounded-xl mb-4">
+                <h3 class="text-2xl font-bold mb-2">Manga Doce</h3>
+                <p class="mb-4">Manga temperada com açúcar e canela.</p>
+                <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 pedido-btn" data-sabor="Manga Doce">
+                    Peça Agora
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Pedido -->
+    <div id="pedido-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-11/12 max-w-lg text-center">
+            <h3 class="text-2xl font-bold mb-4">Confirmar Pedido</h3>
+            <p class="mb-6" id="pedido-sabor-text">Você vai pedir: </p>
+            <button id="modal-confirm-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300 mb-2">
+                Confirmar
+            </button>
+            <br>
+            <button id="modal-close-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-full transition-colors duration-300">
+                Fechar
+            </button>
+        </div>
+    </div>
+
+    <!-- Contato / Redes Sociais -->
+    <section id="contato" class="py-20 px-6 md:px-20 bg-yellow-200 text-center">
+        <h2 class="text-4xl font-bold mb-8">Contato</h2>
+        <div class="flex justify-center space-x-6 mb-8 text-4xl">
+            <a href="https://instagram.com/mangolokopa" target="_blank" class="text-orange-600 hover:text-red-600 transition-colors duration-300">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/5591984036513" target="_blank" class="text-green-500 hover:text-green-600 transition-colors duration-300">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://tiktok.com/mangoloko" target="_blank" class="text-black hover:text-red-600 transition-colors duration-300">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+        <p class="text-lg">Telefone/WhatsApp: <a href="https://wa.me/5591984036513" class="text-green-600 font-bold">+55 91 98403-6513</a></p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-yellow-400 py-8 text-center">
+        <img src="Logotipo png.png" alt="Logo Mango Lôko" class="h-10 w-auto mx-auto mb-4">
+        <div class="flex justify-center space-x-4">
+            <a href="https://instagram.com/mangolokopa" target="_blank" class="text-xl hover:text-gray-200 transition-colors duration-200">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/5591984036513" target="_blank" class="text-xl hover:text-gray-200 transition-colors duration-200">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://tiktok.com/mangoloko" target="_blank" class="text-xl hover:text-gray-200 transition-colors duration-200">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+        mobileMenuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+        mobileMenuClose.onclick = () => mobileMenu.classList.add('hidden');
+
+        // Pedido modal
+        const pedidoBtns = document.querySelectorAll('.pedido-btn');
+        const pedidoModal = document.getElementById('pedido-modal');
+        const pedidoSaborText = document.getElementById('pedido-sabor-text');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+
+        let pedidoAtual = '';
+
+        pedidoBtns.forEach(btn => {
+            btn.onclick = () => {
+                pedidoAtual = btn.getAttribute('data-sabor');
+                pedidoSaborText.textContent = `Você vai pedir: ${pedidoAtual}`;
+                pedidoModal.classList.remove('hidden');
+            };
+        });
+
+        modalCloseBtn.onclick = () => pedidoModal.classList.add('hidden');
+
+        modalConfirmBtn.onclick = () => {
+            const whatsappUrl = `https://wa.me/5591984036513?text=Ol%C3%A1%2C%20gostaria%20de%20pedir%3A%20${encodeURIComponent(pedidoAtual)}`;
+            window.open(whatsappUrl, '_blank');
+            pedidoModal.classList.add('hidden');
+        };
+    </script>
+</body>
+</html>
