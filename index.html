@@ -1,4 +1,44 @@
 <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Em Breve</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle, rgba(17,24,39,1) 0%, rgba(0,0,0,1) 100%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="text-white flex items-center justify-center h-screen">
+    <div class="text-center p-8 bg-gray-900 bg-opacity-50 rounded-lg shadow-2xl">
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 animate-pulse" style="animation: float 3s ease-in-out infinite;">
+            Em Breve
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400">
+            Estamos a trabalhar para tornar este site incrível. Volte em breve!
+        </p>
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
