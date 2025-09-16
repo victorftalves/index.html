@@ -63,15 +63,15 @@
         /* Adiciona textura sutil às seções amarelas */
         .bg-yellow-200 {
             background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
-                                        linear-gradient(225deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
-                                        linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
-                                        linear-gradient(315deg, rgba(255, 255, 255, 0.2) 25%, #FFECB3 25%);
+                                         linear-gradient(225deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                                         linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                                         linear-gradient(315deg, rgba(255, 255, 255, 0.2) 25%, #FFECB3 25%);
             background-size: 10px 10px;
             background-position: 0 0, 0 0, 5px 5px, 5px 5px;
         }
         .bg-yellow-100 {
             background-image: radial-gradient(#FFFBEA 15%, transparent 15%),
-                                        radial-gradient(#FFFBEA 15%, transparent 15%);
+                                         radial-gradient(#FFFBEA 15%, transparent 15%);
             background-color: #FFF3CD;
             background-size: 10px 10px;
             background-position: 0 0, 5px 5px;
@@ -330,6 +330,18 @@
                             </button>
                         </div>
 
+                        <!-- Opções de Pagamento -->
+                        <div>
+                            <label for="payment-select" class="block text-sm font-medium text-gray-700">Forma de Pagamento</label>
+                            <select id="payment-select" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
+                                <option value="" disabled selected>Selecione a forma de pagamento...</option>
+                                <option value="Débito">Débito</option>
+                                <option value="Crédito">Crédito</option>
+                                <option value="Pix">Pix</option>
+                                <option value="Dinheiro">Dinheiro</option>
+                            </select>
+                        </div>
+                        
                         <!-- Resumo do Pedido -->
                         <div class="space-y-2 mt-4" id="order-summary">
                             <!-- Pedidos serão listados aqui -->
@@ -425,191 +437,194 @@
     </footer>
 
     <!-- Modal para mensagens -->
-    <div id="message-modal" class="modal fixed inset-0 bg-black/50 items-center justify-center p-4 z-50">
-        <div class="bg-white p-8 rounded-2xl shadow-xl max-w-sm w-full text-center border-t-4 border-mango-vibrant">
-            <div id="modal-content" class="text-lg font-semibold text-gray-800 mb-4"></div>
-            <button id="modal-close-btn" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">
-                Fechar
-            </button>
+    <div id="message-modal" class="modal fixed inset-0 flex items-center justify-center z-[100] p-4">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-lg z-[101] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+            <div class="modal-content py-4 text-left px-6">
+                <div class="flex justify-between items-center pb-3">
+                    <p class="text-2xl font-bold text-mango-vibrant" id="modal-title">Atenção</p>
+                    <div class="modal-close cursor-pointer z-50">
+                        <svg class="fill-current text-gray-700 hover:text-gray-900" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div id="modal-body" class="mb-4">
+                    <p>Por favor, selecione todas as opções para o seu pedido.</p>
+                </div>
+                <div class="flex justify-end pt-2">
+                    <button class="modal-close px-4 bg-mango-dark p-3 rounded-lg text-white hover:bg-orange-600 font-semibold">Fechar</button>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- Script JavaScript -->
+    
     <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.querySelectorAll('#mobile-menu a');
-        const desktopNavLinks = document.querySelectorAll('.nav-link');
-        const allNavLinks = [...navLinks, ...desktopNavLinks];
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToOrderButtons = document.querySelectorAll('.add-to-order');
+            const productSelect = document.getElementById('product-select');
+            const orderForm = document.getElementById('order-form');
+            const submitOrderBtn = document.getElementById('submit-order-btn');
+            const orderSummary = document.getElementById('order-summary');
+            const totalSummary = document.getElementById('total-summary');
+            const sizeSelect = document.getElementById('size-select');
+            const ripenessSelect = document.getElementById('ripeness-select');
+            const paymentSelect = document.getElementById('payment-select');
+            const addProductBtn = document.getElementById('add-to-order-btn');
+            
+            let orderItems = [];
+            
+            // Função para exibir o modal de mensagem
+            function showModal(title, message) {
+                const modal = document.getElementById('message-modal');
+                const modalTitle = document.getElementById('modal-title');
+                const modalBody = document.getElementById('modal-body');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+                modalTitle.textContent = title;
+                modalBody.innerHTML = `<p>${message}</p>`;
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+                modal.classList.add('is-active');
+                modal.querySelector('.modal-container').classList.remove('scale-95', 'opacity-0');
+                modal.querySelector('.modal-container').classList.add('scale-100', 'opacity-100');
+            }
+
+            // Fechar o modal
+            const modalCloseButtons = document.querySelectorAll('.modal-close');
+            modalCloseButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = document.getElementById('message-modal');
+                    modal.classList.remove('is-active');
+                    modal.querySelector('.modal-container').classList.remove('scale-100', 'opacity-100');
+                    modal.querySelector('.modal-container').classList.add('scale-95', 'opacity-0');
+                });
             });
-        });
 
-        // Lógica para destacar o link ativo no menu
-        const sections = document.querySelectorAll('section[id]');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
+            // Lidar com o clique dos botões "Peça Agora" no cardápio
+            addToOrderButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productName = event.target.getAttribute('data-product');
+                    if (productName) {
+                        productSelect.value = productName;
+                        // Rola suavemente para a seção de pedido
+                        document.getElementById('pedido').scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Lidar com o clique do botão "Adicionar ao Pedido" no formulário
+            addProductBtn.addEventListener('click', () => {
+                const product = productSelect.value;
+                const size = sizeSelect.value;
+                const ripeness = ripenessSelect.value;
+
+                if (product && size && ripeness) {
+                    const sizeOption = sizeSelect.options[sizeSelect.selectedIndex];
+                    const price = parseFloat(sizeOption.getAttribute('data-price'));
+
+                    const newItem = {
+                        product,
+                        size,
+                        ripeness,
+                        price
+                    };
+                    orderItems.push(newItem);
+                    renderOrderSummary();
+                    // Limpa os seletores para adicionar o próximo item
+                    productSelect.value = "";
+                    sizeSelect.value = "";
+                    ripenessSelect.value = "";
+                } else {
+                    showModal('Atenção', 'Por favor, selecione Sabor, Tamanho e Ponto da manga para adicionar ao pedido.');
                 }
             });
 
-            allNavLinks.forEach(link => {
-                link.classList.remove('active-link');
-                if (link.href.includes(current)) {
-                    link.classList.add('active-link');
-                }
-            });
-        });
-
-        const orderForm = document.getElementById('order-form');
-        const productSelect = document.getElementById('product-select');
-        const sizeSelect = document.getElementById('size-select');
-        const ripenessSelect = document.getElementById('ripeness-select');
-        const addToOrderBtn = document.getElementById('add-to-order-btn');
-        const orderSummary = document.getElementById('order-summary');
-        const deliveryFeeSummary = document.getElementById('delivery-fee-summary');
-        const totalSummary = document.getElementById('total-summary');
-        const messageModal = document.getElementById('message-modal');
-        const modalContent = document.getElementById('modal-content');
-        const modalCloseBtn = document.getElementById('modal-close-btn');
-
-        const FEEDBACK_WHATSAPP_NUMBER = '5591984036513';
-        const DELIVERY_FEE = 6.00; // Taxa de entrega fixa
-
-        let orderItems = [];
-
-        function updateOrderSummary() {
-            let totalPrice = 0;
-            let summaryHTML = '';
-
-            orderItems.forEach((item, index) => {
-                totalPrice += item.price;
-                summaryHTML += `
-                    <div class="bg-white p-3 rounded-lg shadow-sm flex justify-between items-center animate-fade-in">
+            // Renderiza o resumo do pedido
+            function renderOrderSummary() {
+                orderSummary.innerHTML = '';
+                let total = 0;
+                orderItems.forEach((item, index) => {
+                    total += item.price;
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('bg-gray-200', 'p-3', 'rounded-lg', 'flex', 'justify-between', 'items-center');
+                    itemElement.innerHTML = `
                         <div>
-                            <p class="font-semibold">${item.product}</p>
-                            <p class="text-sm text-gray-600">${item.size}, Ponto: ${item.ripeness}</p>
+                            <p class="font-bold">${item.product}</p>
+                            <p class="text-sm text-gray-600">${item.size}, ${item.ripeness}</p>
                         </div>
                         <div class="flex items-center space-x-2">
                             <span class="font-bold text-mango-vibrant">R$ ${item.price.toFixed(2)}</span>
-                            <button type="button" class="remove-item text-red-500 hover:text-red-700 transition-colors duration-200" data-index="${index}">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
+                            <button type="button" class="remove-item-btn text-red-500 hover:text-red-700 font-bold text-sm" data-index="${index}">x</button>
                         </div>
-                    </div>
-                `;
-            });
-
-            orderSummary.innerHTML = summaryHTML;
-
-            // Adiciona a taxa de entrega e o total final
-            deliveryFeeSummary.innerHTML = orderItems.length > 0 ? `Entrega: R$ ${DELIVERY_FEE.toFixed(2)}` : '';
-            const finalTotal = totalPrice + (orderItems.length > 0 ? DELIVERY_FEE : 0);
-            totalSummary.innerHTML = orderItems.length > 0 ? `Total: R$ ${finalTotal.toFixed(2)}` : '';
-
-            // Adiciona evento de clique para os botões de remover item
-            document.querySelectorAll('.remove-item').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const indexToRemove = event.target.closest('.remove-item').dataset.index;
-                    orderItems.splice(indexToRemove, 1);
-                    updateOrderSummary();
+                    `;
+                    orderSummary.appendChild(itemElement);
                 });
-            });
-        }
 
-        function showModal(message) {
-            modalContent.textContent = message;
-            messageModal.classList.add('is-active', 'flex');
-        }
-
-        modalCloseBtn.addEventListener('click', () => {
-            messageModal.classList.remove('is-active', 'flex');
-        });
-        
-        // Adiciona um item ao pedido
-        addToOrderBtn.addEventListener('click', () => {
-            const product = productSelect.value;
-            const size = sizeSelect.value;
-            const ripeness = ripenessSelect.value;
-            const price = parseFloat(sizeSelect.options[sizeSelect.selectedIndex].dataset.price);
-
-            if (product && size && ripeness) {
-                orderItems.push({ product, size, ripeness, price });
-                updateOrderSummary();
-                productSelect.value = "";
-                sizeSelect.value = "";
-                ripenessSelect.value = "";
-            } else {
-                showModal('Por favor, selecione um sabor, tamanho e ponto da manga.');
-            }
-        });
-
-        // Envia o pedido via WhatsApp
-        orderForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            if (orderItems.length === 0) {
-                showModal('Por favor, adicione pelo menos um item ao pedido.');
-                return;
+                // Adiciona o evento de remoção para os novos botões
+                document.querySelectorAll('.remove-item-btn').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const index = event.target.getAttribute('data-index');
+                        orderItems.splice(index, 1);
+                        renderOrderSummary();
+                    });
+                });
+                
+                totalSummary.textContent = `Total: R$ ${total.toFixed(2)}`;
             }
 
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
+            // Lidar com o envio do formulário de pedido
+            orderForm.addEventListener('submit', (event) => {
+                event.preventDefault();
 
-            if (!name || !phone || !address) {
-                showModal('Por favor, preencha todos os campos obrigatórios: Nome, Telefone e Endereço.');
-                return;
-            }
-            
-            let message = `Olá, gostaria de fazer um pedido da Mango Lôko!\n\n`;
-            message += `*Dados do Cliente:*\n`;
-            message += `Nome: ${name}\n`;
-            message += `Telefone: ${phone}\n`;
-            message += `Endereço: ${address}\n\n`;
-            message += `*Pedido:*\n`;
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const paymentMethod = paymentSelect.value;
 
-            let totalPrice = 0;
-            orderItems.forEach(item => {
-                message += `- ${item.product} (${item.size}, Ponto: ${item.ripeness}) - R$ ${item.price.toFixed(2)}\n`;
-                totalPrice += item.price;
-            });
-            
-            const finalTotal = totalPrice + DELIVERY_FEE;
-            message += `\n*Taxa de Entrega*: R$ ${DELIVERY_FEE.toFixed(2)}\n`;
-            message += `*Total*: R$ ${finalTotal.toFixed(2)}\n`;
-            message += `\nObrigado!`;
+                if (orderItems.length === 0) {
+                    showModal('Atenção', 'Seu pedido está vazio! Por favor, adicione pelo menos um item.');
+                    return;
+                }
+                
+                if (!name || !phone || !address || !paymentMethod) {
+                    showModal('Atenção', 'Por favor, preencha todos os campos do formulário e selecione a forma de pagamento.');
+                    return;
+                }
 
-            const whatsappUrl = `https://wa.me/5591984036513?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-        });
+                let message = `Olá, gostaria de fazer um pedido da Mango Lôko!\n\n`;
+                message += `*Dados do Pedido:*\n`;
+                message += `Nome: ${name}\n`;
+                message += `Telefone: ${phone}\n`;
+                message += `Endereço: ${address}\n`;
+                message += `Pagamento: ${paymentMethod}\n\n`;
+                message += `*Itens do Pedido:*\n`;
 
-        // Lógica do Formulário de Feedback
-        const feedbackForm = document.getElementById('feedback-form');
-        feedbackForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('feedback-name').value;
-            const message = document.getElementById('feedback-message').value;
+                let total = 0;
+                orderItems.forEach(item => {
+                    message += `- ${item.product} (${item.size}) - Ponto: ${item.ripeness} - R$ ${item.price.toFixed(2)}\n`;
+                    total += item.price;
+                });
+                
+                message += `\n*Total a pagar: R$ ${total.toFixed(2)}*`;
 
-            if (name && message) {
-                const feedbackMessage = `*Novo Feedback de Cliente:*\n\nNome: ${name}\n\nMensagem: ${message}`;
-                const whatsappUrl = `https://wa.me/${FEEDBACK_WHATSAPP_NUMBER}?text=${encodeURIComponent(feedbackMessage)}`;
+                const whatsappUrl = `https://wa.me/5591984036513?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
-                showModal('Seu feedback foi enviado com sucesso! Agradecemos sua colaboração.');
-            } else {
-                showModal('Por favor, preencha seu nome e a mensagem de feedback.');
-            }
+            });
+
+            // Lidar com o envio do formulário de feedback (já existente)
+            const feedbackForm = document.getElementById('feedback-form');
+            feedbackForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const feedbackName = document.getElementById('feedback-name').value;
+                const feedbackMessage = document.getElementById('feedback-message').value;
+
+                if (!feedbackName || !feedbackMessage) {
+                    showModal('Atenção', 'Por favor, preencha seu nome e o feedback antes de enviar.');
+                    return;
+                }
+                const whatsappMessage = `Feedback de ${feedbackName}:\n\n${feedbackMessage}`;
+                const whatsappUrl = `https://wa.me/5591984036513?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappUrl, '_blank');
+            });
         });
     </script>
 </body>
