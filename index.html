@@ -63,15 +63,15 @@
         /* Adiciona textura sutil às seções amarelas */
         .bg-yellow-200 {
             background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
-                              linear-gradient(225deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
-                              linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
-                              linear-gradient(315deg, rgba(255, 255, 255, 0.2) 25%, #FFECB3 25%);
+                                        linear-gradient(225deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                                        linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                                        linear-gradient(315deg, rgba(255, 255, 255, 0.2) 25%, #FFECB3 25%);
             background-size: 10px 10px;
             background-position: 0 0, 0 0, 5px 5px, 5px 5px;
         }
         .bg-yellow-100 {
             background-image: radial-gradient(#FFFBEA 15%, transparent 15%),
-                              radial-gradient(#FFFBEA 15%, transparent 15%);
+                                        radial-gradient(#FFFBEA 15%, transparent 15%);
             background-color: #FFF3CD;
             background-size: 10px 10px;
             background-position: 0 0, 5px 5px;
@@ -101,6 +101,7 @@
                 <a href="#cardapio" class="nav-link hover:text-mango-dark transition-colors duration-200 font-semibold">Cardápio</a>
                 <a href="#sobre" class="nav-link hover:text-mango-dark transition-colors duration-200 font-semibold">Sobre</a>
                 <a href="#pedido" class="nav-link hover:text-mango-dark transition-colors duration-200 font-semibold">Como Pedir</a>
+                <a href="#feedback" class="nav-link hover:text-mango-dark transition-colors duration-200 font-semibold">Feedback</a>
                 <a href="#contato" class="nav-link hover:text-mango-dark transition-colors duration-200 font-semibold">Contato</a>
                 <a href="https://wa.me/5591984036513?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20de%20manga%20temperada!" target="_blank" class="bg-mango-vibrant hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 animate-pulse-attention inline-block">
                     Peça Agora
@@ -116,6 +117,7 @@
             <a href="#cardapio" class="block py-3 px-4 text-center hover:bg-gray-100 transition-colors duration-200 font-semibold">Cardápio</a>
             <a href="#sobre" class="block py-3 px-4 text-center hover:bg-gray-100 transition-colors duration-200 font-semibold">Sobre</a>
             <a href="#pedido" class="block py-3 px-4 text-center hover:bg-gray-100 transition-colors duration-200 font-semibold">Como Pedir</a>
+            <a href="#feedback" class="block py-3 px-4 text-center hover:bg-gray-100 transition-colors duration-200 font-semibold">Feedback</a>
             <a href="#contato" class="block py-3 px-4 text-center hover:bg-gray-100 transition-colors duration-200 font-semibold">Contato</a>
         </div>
     </nav>
@@ -332,6 +334,8 @@
                         <div class="space-y-2 mt-4" id="order-summary">
                             <!-- Pedidos serão listados aqui -->
                         </div>
+                        <div id="delivery-fee-summary" class="text-lg font-bold text-gray-800 text-right mt-4"></div>
+                        <div id="total-summary" class="text-2xl font-bold text-mango-vibrant text-right mt-2"></div>
                         <button type="submit" id="submit-order-btn" class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300">
                             Enviar Pedido via WhatsApp
                         </button>
@@ -342,6 +346,29 @@
                             <i class="fab fa-whatsapp mr-2"></i> Nosso WhatsApp
                         </a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nova seção de Feedback -->
+        <section id="feedback" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-mango-dark animate-fade-in">Deixe seu Feedback</h2>
+                <div class="max-w-xl mx-auto bg-gray-100 p-8 rounded-3xl shadow-xl animate-fade-in">
+                    <p class="text-center text-lg mb-6">Sua opinião é muito importante para nós! Conte-nos sobre sua experiência com a Mango Lôko.</p>
+                    <form id="feedback-form" class="space-y-4">
+                        <div>
+                            <label for="feedback-name" class="block text-sm font-medium text-gray-700">Seu Nome</label>
+                            <input type="text" id="feedback-name" name="feedback-name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
+                        </div>
+                        <div>
+                            <label for="feedback-message" class="block text-sm font-medium text-gray-700">Seu Feedback</label>
+                            <textarea id="feedback-message" name="feedback-message" rows="5" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant"></textarea>
+                        </div>
+                        <button type="submit" id="submit-feedback-btn" class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300">
+                            Enviar Feedback via WhatsApp
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -379,6 +406,8 @@
                 <a href="#cardapio" class="hover:text-gray-200 transition-colors duration-200">Cardápio</a>
                 <a href="#sobre" class="hover:text-gray-200 transition-colors duration-200">Sobre</a>
                 <a href="#pedido" class="hover:text-gray-200 transition-colors duration-200">Pedidos</a>
+                <a href="#feedback" class="hover:text-gray-200 transition-colors duration-200">Feedback</a>
+                <a href="#contato" class="hover:text-gray-200 transition-colors duration-200">Contato</a>
             </div>
             <p class="text-sm text-gray-200 mb-4">&copy; 2025 Mango Lôko. Todos os direitos reservados.</p>
             <div class="flex justify-center space-x-4">
@@ -449,133 +478,139 @@
         const ripenessSelect = document.getElementById('ripeness-select');
         const addToOrderBtn = document.getElementById('add-to-order-btn');
         const orderSummary = document.getElementById('order-summary');
+        const deliveryFeeSummary = document.getElementById('delivery-fee-summary');
+        const totalSummary = document.getElementById('total-summary');
         const messageModal = document.getElementById('message-modal');
         const modalContent = document.getElementById('modal-content');
         const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        const FEEDBACK_WHATSAPP_NUMBER = '5591984036513';
+        const DELIVERY_FEE = 6.00; // Taxa de entrega fixa
+
         let orderItems = [];
 
+        function updateOrderSummary() {
+            let totalPrice = 0;
+            let summaryHTML = '';
+
+            orderItems.forEach((item, index) => {
+                totalPrice += item.price;
+                summaryHTML += `
+                    <div class="bg-white p-3 rounded-lg shadow-sm flex justify-between items-center animate-fade-in">
+                        <div>
+                            <p class="font-semibold">${item.product}</p>
+                            <p class="text-sm text-gray-600">${item.size}, Ponto: ${item.ripeness}</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="font-bold text-mango-vibrant">R$ ${item.price.toFixed(2)}</span>
+                            <button type="button" class="remove-item text-red-500 hover:text-red-700 transition-colors duration-200" data-index="${index}">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            orderSummary.innerHTML = summaryHTML;
+
+            // Adiciona a taxa de entrega e o total final
+            deliveryFeeSummary.innerHTML = orderItems.length > 0 ? `Entrega: R$ ${DELIVERY_FEE.toFixed(2)}` : '';
+            const finalTotal = totalPrice + (orderItems.length > 0 ? DELIVERY_FEE : 0);
+            totalSummary.innerHTML = orderItems.length > 0 ? `Total: R$ ${finalTotal.toFixed(2)}` : '';
+
+            // Adiciona evento de clique para os botões de remover item
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const indexToRemove = event.target.closest('.remove-item').dataset.index;
+                    orderItems.splice(indexToRemove, 1);
+                    updateOrderSummary();
+                });
+            });
+        }
+
+        function showModal(message) {
+            modalContent.textContent = message;
+            messageModal.classList.add('is-active', 'flex');
+        }
+
+        modalCloseBtn.addEventListener('click', () => {
+            messageModal.classList.remove('is-active', 'flex');
+        });
+        
         // Adiciona um item ao pedido
         addToOrderBtn.addEventListener('click', () => {
             const product = productSelect.value;
             const size = sizeSelect.value;
             const ripeness = ripenessSelect.value;
-            const price = sizeSelect.options[sizeSelect.selectedIndex]?.dataset.price;
-            
-            if (!product || !size || !ripeness) {
-                showMessage("Por favor, selecione um sabor, um tamanho e o ponto da manga.");
-                return;
-            }
+            const price = parseFloat(sizeSelect.options[sizeSelect.selectedIndex].dataset.price);
 
-            const item = { product, size, ripeness, price: parseFloat(price) };
-            orderItems.push(item);
-            renderOrderSummary();
-            
-            // Limpa os seletores após adicionar
-            productSelect.value = "";
-            sizeSelect.value = "";
-            ripenessSelect.value = "";
-        });
-
-        // Adiciona item diretamente dos cards do cardápio
-        document.querySelectorAll('.add-to-order').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const productName = event.target.dataset.product;
-                const item = { product: productName, size: 'Pote P (120g)', ripeness: 'De Vez', price: 12 };
-                orderItems.push(item);
-                renderOrderSummary();
-                // Rola suavemente para a seção de pedido
-                document.getElementById('pedido').scrollIntoView({ behavior: 'smooth' });
-                showMessage(`${productName} adicionado ao seu pedido!`, 'bg-green-500');
-            });
-        });
-
-        // Renderiza o resumo do pedido na página
-        function renderOrderSummary() {
-            orderSummary.innerHTML = '';
-            let total = 0;
-            if (orderItems.length === 0) {
-                const emptyMessage = document.createElement('p');
-                emptyMessage.textContent = "Seu pedido está vazio.";
-                emptyMessage.classList.add('text-center', 'text-gray-500', 'italic');
-                orderSummary.appendChild(emptyMessage);
+            if (product && size && ripeness) {
+                orderItems.push({ product, size, ripeness, price });
+                updateOrderSummary();
+                productSelect.value = "";
+                sizeSelect.value = "";
+                ripenessSelect.value = "";
             } else {
-                orderItems.forEach((item, index) => {
-                    const itemElement = document.createElement('div');
-                    itemElement.classList.add('flex', 'justify-between', 'items-center', 'bg-white', 'p-3', 'rounded-lg', 'shadow-sm', 'border-l-4', 'border-mango-dark');
-                    itemElement.innerHTML = `
-                        <div>
-                            <p class="font-semibold">${item.product}</p>
-                            <p class="text-xs text-gray-500">${item.size} (${item.ripeness})</p>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="font-bold text-mango-vibrant">R$${item.price.toFixed(2).replace('.', ',')}</span>
-                            <button type="button" data-index="${index}" class="remove-item-btn text-red-500 hover:text-red-700 transition-colors duration-200">
-                                <i class="fas fa-times-circle"></i>
-                            </button>
-                        </div>
-                    `;
-                    orderSummary.appendChild(itemElement);
-                    total += item.price;
-                });
-                const totalElement = document.createElement('div');
-                totalElement.classList.add('flex', 'justify-between', 'items-center', 'bg-white', 'p-3', 'rounded-lg', 'shadow-sm', 'mt-2', 'font-bold', 'text-lg', 'text-mango-dark');
-                totalElement.innerHTML = `<span>Total:</span><span>R$${total.toFixed(2).replace('.', ',')}</span>`;
-                orderSummary.appendChild(totalElement);
-            }
-        }
-        
-        // Remove um item do pedido
-        orderSummary.addEventListener('click', (event) => {
-            if (event.target.closest('.remove-item-btn')) {
-                const index = event.target.closest('.remove-item-btn').dataset.index;
-                orderItems.splice(index, 1);
-                renderOrderSummary();
+                showModal('Por favor, selecione um sabor, tamanho e ponto da manga.');
             }
         });
 
-        // Lida com o envio do formulário
-        orderForm.addEventListener('submit', function(event) {
-            event.preventDefault();
+        // Envia o pedido via WhatsApp
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
             if (orderItems.length === 0) {
-                showMessage("Seu pedido está vazio. Adicione um item antes de enviar.");
+                showModal('Por favor, adicione pelo menos um item ao pedido.');
                 return;
             }
-            
+
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const address = document.getElementById('address').value;
 
-            // Criar a mensagem do WhatsApp
-            let orderText = orderItems.map(item => `${item.product} - ${item.size} (${item.ripeness})`).join('\n');
-            const total = orderItems.reduce((sum, item) => sum + item.price, 0);
+            if (!name || !phone || !address) {
+                showModal('Por favor, preencha todos os campos obrigatórios: Nome, Telefone e Endereço.');
+                return;
+            }
+            
+            let message = `Olá, gostaria de fazer um pedido da Mango Lôko!\n\n`;
+            message += `*Dados do Cliente:*\n`;
+            message += `Nome: ${name}\n`;
+            message += `Telefone: ${phone}\n`;
+            message += `Endereço: ${address}\n\n`;
+            message += `*Pedido:*\n`;
 
-            const message = `Olá, Mango Lôko! Meu nome é ${name} e gostaria de fazer o seguinte pedido:\n\n*Pedido:* \n${orderText}\n\n*Valor Total:* R$${total.toFixed(2).replace('.', ',')}\n\n*Endereço:* ${address}\n\n*Telefone para contato:* ${phone}`;
+            let totalPrice = 0;
+            orderItems.forEach(item => {
+                message += `- ${item.product} (${item.size}, Ponto: ${item.ripeness}) - R$ ${item.price.toFixed(2)}\n`;
+                totalPrice += item.price;
+            });
+            
+            const finalTotal = totalPrice + DELIVERY_FEE;
+            message += `\n*Taxa de Entrega*: R$ ${DELIVERY_FEE.toFixed(2)}\n`;
+            message += `*Total*: R$ ${finalTotal.toFixed(2)}\n`;
+            message += `\nObrigado!`;
+
             const whatsappUrl = `https://wa.me/5591984036513?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        });
 
-            // Exibe o modal de confirmação e redireciona
-            showMessage("Seu pedido será enviado via WhatsApp. Confirme para continuar.");
-            setTimeout(() => {
+        // Lógica do Formulário de Feedback
+        const feedbackForm = document.getElementById('feedback-form');
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('feedback-name').value;
+            const message = document.getElementById('feedback-message').value;
+
+            if (name && message) {
+                const feedbackMessage = `*Novo Feedback de Cliente:*\n\nNome: ${name}\n\nMensagem: ${message}`;
+                const whatsappUrl = `https://wa.me/${FEEDBACK_WHATSAPP_NUMBER}?text=${encodeURIComponent(feedbackMessage)}`;
                 window.open(whatsappUrl, '_blank');
-            }, 1000);
+                showModal('Seu feedback foi enviado com sucesso! Agradecemos sua colaboração.');
+            } else {
+                showModal('Por favor, preencha seu nome e a mensagem de feedback.');
+            }
         });
-
-        // Mostra o modal de mensagem
-        function showMessage(message) {
-            modalContent.textContent = message;
-            messageModal.classList.add('is-active');
-            messageModal.classList.remove('hidden');
-            messageModal.classList.add('flex');
-        }
-
-        // Fecha o modal de mensagem
-        modalCloseBtn.addEventListener('click', () => {
-            messageModal.classList.remove('is-active');
-            messageModal.classList.add('hidden');
-            messageModal.classList.remove('flex');
-        });
-
-        renderOrderSummary();
     </script>
 </body>
 </html>
