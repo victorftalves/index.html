@@ -224,18 +224,18 @@
                         <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Manga Clássica">
                             Peça Agora
                         </button>
-                    </div>
-                    <!-- Card para Manga Paraense -->
-                    <div class="card bg-gray-100 p-4 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform animate-slide-in-left">
-                        <img src="paraense.png" alt="Manga Paraense da Mango Lôko" class="w-full h-48 object-cover rounded-2xl mb-4">
-                        <h3 class="text-xl font-bold mb-2">Manga Paraense 🌿</h3>
-                        <p class="text-gray-600 text-sm mb-2">Uma homenagem ao Pará! Sabor amazônico que mistura acidez, frescor e tradição regional.</p>
-                        <p class="text-xs italic text-gray-500 mb-4">Ingredientes: Tucupi reduzido, jambu fresco, castanha do Pará triturada, pimenta-de-cheiro, limão</p>
-                        <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
-                        <p class="text-xs italic text-center text-gray-500 mb-4">“O sabor da Amazônia na sua manga!”</p>
-                        <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Manga Paraense">
-                            Peça Agora
-                        </button>
+                   <div class="card bg-gray-100 p-4 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform animate-slide-in-left">
+    <img src="lôko.png" alt="Monte a Sua Mango Lôko" class="w-full h-48 object-cover rounded-2xl mb-4">
+    <h3 class="text-xl font-bold mb-2">🥭 Monte a Sua Mango Lôko</h3>
+    <p class="text-gray-600 text-sm mb-2">Escolha o ponto da manga e até 5 temperos disponíveis para criar sua combinação perfeita!</p>
+    <p class="text-xs italic text-gray-500 mb-4">
+        Ponto da manga: Verde, De Vez ou Madura<br>
+        Temperos disponíveis: Sal, Pimenta moída, Suco de limão, Lemon Pepper, Sal do Himalaia, Páprica picante, Caramelo, Calda de coco, Melaço, Doce de leite, Nutella, Sal parrilla, Vinagre, Tajín, Frutitas, Kids, etc.
+    </p>
+    <p class="text-lg font-bold text-mango-vibrant mb-2">A partir de R$ 12,00</p>
+    <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Monte a Sua Mango Lôko">
+        Peça Agora
+    </button>
                     </div>
                 </div>
             </div>
@@ -315,7 +315,46 @@
                                     <option value="Pote M (250g)" data-price="16">Pote M (250g) - R$16,00</option>
                                     <option value="Pote G (500g)" data-price="22">Pote G (500g) - R$22,00</option>
                                 </select>
-                            </div>
+                            </div><div class="mt-4 bg-yellow-200 p-4 rounded-xl">
+    <h4 class="font-bold text-lg mb-2 text-center text-mango-dark">Escolha seus temperos (até 5)</h4>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <!-- Temperos Clássicos -->
+        <label><input type="checkbox" name="tempero[]" value="Sal"> 🧂 Sal</label>
+        <label><input type="checkbox" name="tempero[]" value="Pimenta moída"> 🌶️ Pimenta moída na hora</label>
+        <label><input type="checkbox" name="tempero[]" value="Suco de limão"> 🍋 Suco de limão espremido</label>
+        <label><input type="checkbox" name="tempero[]" value="Lemon Pepper"> 🍋✨ Lemon Pepper</label>
+        <label><input type="checkbox" name="tempero[]" value="Sal do Himalaia"> 🧂 Sal do Himalaia</label>
+        <label><input type="checkbox" name="tempero[]" value="Páprica picante"> 🌶️ Páprica picante</label>
+        <label><input type="checkbox" name="tempero[]" value="Caramelo"> 🍯 Caramelo</label>
+        <label><input type="checkbox" name="tempero[]" value="Calda de coco"> 🥥 Calda de coco (não doce)</label>
+        <label><input type="checkbox" name="tempero[]" value="Melaço de cana"> 🍶 Melaço de cana</label>
+        <label><input type="checkbox" name="tempero[]" value="Doce de leite"> 🍫 Doce de leite (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Nutella"> 🍫 Nutella (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Sal parrilla"> 🧂 Sal parrilla</label>
+        <label><input type="checkbox" name="tempero[]" value="Vinagre"> 🍶 Vinagre</label>
+        <label><input type="checkbox" name="tempero[]" value="Sem tempero"> 🚫 Sem tempero</label>
+
+        <!-- Toque Gourmet -->
+        <label><input type="checkbox" name="tempero[]" value="Leite condensado separado"> 🥛 Leite condensado separado (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Tajín com limão"> 🌶️ Tajín com limão (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Tajín sem limão"> 🌶️ Tajín sem limão (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Frutitas"> 🌶️ Frutitas (mix de pimentas com ácido cítrico) (máx. 1)</label>
+
+        <!-- Kids -->
+        <label><input type="checkbox" name="tempero[]" value="Leite condensado"> 🥛 Leite condensado (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Doce de leite Kids"> 🍯 Doce de leite (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Caramelo Kids"> 🍯 Caramelo (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Canela em pó"> 🍂 Canela em pó</label>
+        <label><input type="checkbox" name="tempero[]" value="Melaço de cana Kids"> 🍶 Melaço de cana</label>
+        <label><input type="checkbox" name="tempero[]" value="Fini Dentaduras"> 🍬 Fini Dentaduras (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Fini Beijos"> 🍬 Fini Beijos (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Calda de morango"> 🍓 Calda de morango (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Calda de maracujá"> 🥭 Calda de maracujá (máx. 1)</label>
+        <label><input type="checkbox" name="tempero[]" value="Sem tempero Kids"> 🚫 Sem tempero</label>
+    </div>
+    <p class="text-xs italic mt-2 text-gray-500">Escolha até 5 ingredientes no total. Items com [máx. 1] só podem ser selecionados uma vez. Para Kids, é obrigatório escolher pelo menos 1 item.</p>
+</div>
+
                             <div>
                                 <label for="ripeness-select" class="block text-sm font-medium text-gray-700">Ponto da Manga</label>
                                 <select id="ripeness-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
