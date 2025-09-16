@@ -224,62 +224,83 @@
                         <button class="w-full bg-mango-vibrant hover:bg-red-600 text-white font-bold py-3 rounded-full transition-colors duration-300 add-to-order" data-product="Manga Clássica">
                             Peça Agora
                         </button>
-                   <!-- Campos para adicionar item dinamicamente -->
-<div class="bg-yellow-200 p-4 rounded-xl">
-    <h4 class="font-bold text-lg mb-2 text-center text-mango-dark">Adicionar Sabor</h4>
-    <div>
-        <label for="product-select" class="block text-sm font-medium text-gray-700">Sabor</label>
-        <select id="product-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
-            <option value="" disabled selected>Selecione um sabor...</option>
-            <option value="Manga Mexicana" data-price="12">Manga Mexicana</option>
-            <option value="Manga Americana" data-price="12">Manga Americana</option>
-            <option value="Manga Colombiana" data-price="12">Manga Colombiana</option>
-            <option value="Manga Lôko" data-price="12">Manga Lôko</option>
-            <option value="Manga Clássica" data-price="12">Manga Clássica</option>
-            <option value="Monte a Sua Mango Lôko" data-price="12">Monte a Sua Mango Lôko</option>
-        </select>
-    </div>
+                   <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Mango Lôko</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-yellow-50 p-6 font-sans">
 
-    <!-- Dropdown de escolha de sabor / temperos exclusivo -->
-    <div id="custom-options" class="mt-4 hidden">
-        <label for="ripeness-select" class="block text-sm font-medium text-gray-700">Ponto da Manga</label>
-        <select id="ripeness-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
-            <option value="" disabled selected>Selecione o ponto...</option>
-            <option value="Verde">Verde</option>
-            <option value="De Vez">De Vez</option>
-            <option value="Madura">Madura</option>
-        </select>
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-4xl font-bold text-center text-mango-dark mb-6">Cardápio Mango Lôko</h1>
 
-        <div class="mt-4 bg-yellow-200 p-4 rounded-xl">
-            <h4 class="font-bold text-lg mb-2 text-center text-mango-dark">Escolha seus temperos (até 5)</h4>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <!-- Aqui entram todos os checkboxes de temperos -->
-                <label><input type="checkbox" name="tempero[]" value="Sal"> 🧂 Sal</label>
-                <label><input type="checkbox" name="tempero[]" value="Pimenta moída"> 🌶️ Pimenta moída</label>
-                <label><input type="checkbox" name="tempero[]" value="Suco de limão"> 🍋 Suco de limão</label>
-                <!-- Continue listando os demais temperos aqui -->
+        <!-- Card de seleção de sabores -->
+        <div class="bg-yellow-200 p-6 rounded-xl shadow-lg">
+            <h2 class="text-2xl font-bold text-center text-mango-dark mb-4">Escolha seu sabor</h2>
+
+            <label for="product-select" class="block text-sm font-medium text-gray-700 mb-2">Sabor</label>
+            <select id="product-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
+                <option value="" disabled selected>Selecione um sabor...</option>
+                <option value="Manga Mexicana" data-price="12">Manga Mexicana</option>
+                <option value="Manga Americana" data-price="12">Manga Americana</option>
+                <option value="Manga Colombiana" data-price="12">Manga Colombiana</option>
+                <option value="Manga Lôko" data-price="12">Manga Lôko</option>
+                <option value="Manga Clássica" data-price="12">Manga Clássica</option>
+                <option value="Monte a Sua Mango Lôko" data-price="12">Monte a Sua Mango Lôko</option>
+            </select>
+
+            <!-- Opções exclusivas "Monte a Sua" -->
+            <div id="custom-options" class="mt-6 hidden">
+                <!-- Ponto da Manga -->
+                <label for="ripeness-select" class="block text-sm font-medium text-gray-700 mb-2">Ponto da Manga</label>
+                <select id="ripeness-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:ring-mango-vibrant focus:border-mango-vibrant">
+                    <option value="" disabled selected>Selecione o ponto...</option>
+                    <option value="Verde">Verde</option>
+                    <option value="De Vez">De Vez</option>
+                    <option value="Madura">Madura</option>
+                </select>
+
+                <!-- Temperos -->
+                <div class="mt-4 bg-yellow-100 p-4 rounded-xl">
+                    <h3 class="text-lg font-bold mb-2 text-mango-dark text-center">Escolha seus temperos (até 5)</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <label><input type="checkbox" name="tempero[]" value="Sal"> 🧂 Sal</label>
+                        <label><input type="checkbox" name="tempero[]" value="Pimenta biquinho"> 🌶️ Pimenta biquinho</label>
+                        <label><input type="checkbox" name="tempero[]" value="Suco de limão"> 🍋 Suco de limão</label>
+                        <label><input type="checkbox" name="tempero[]" value="Gengibre ralado"> 🫚 Gengibre ralado</label>
+                        <label><input type="checkbox" name="tempero[]" value="Açúcar demerara"> 🍬 Açúcar demerara</label>
+                        <label><input type="checkbox" name="tempero[]" value="Lascas de coco"> 🥥 Lascas de coco</label>
+                        <!-- Adicione mais temperos se necessário -->
+                    </div>
+                    <p class="text-xs italic mt-2 text-gray-500">Escolha até 5 ingredientes no total.</p>
+                </div>
             </div>
-            <p class="text-xs italic mt-2 text-gray-500">Escolha até 5 ingredientes no total.</p>
+
+            <!-- Botão adicionar ao pedido -->
+            <button type="button" id="add-to-order-btn" class="mt-6 w-full bg-mango-dark hover:bg-orange-600 text-white font-bold py-3 rounded-full transition-colors duration-300">
+                Adicionar ao Pedido
+            </button>
         </div>
     </div>
 
-    <button type="button" id="add-to-order-btn" class="mt-4 w-full bg-mango-dark hover:bg-orange-600 text-white font-bold py-3 rounded-full transition-colors duration-300">
-        Adicionar ao Pedido
-    </button>
-</div>
+    <script>
+        const productSelect = document.getElementById('product-select');
+        const customOptions = document.getElementById('custom-options');
 
-<script>
-    const productSelect = document.getElementById('product-select');
-    const customOptions = document.getElementById('custom-options');
+        productSelect.addEventListener('change', function() {
+            if (this.value === 'Monte a Sua Mango Lôko') {
+                customOptions.classList.remove('hidden');
+            } else {
+                customOptions.classList.add('hidden');
+            }
+        });
+    </script>
 
-    productSelect.addEventListener('change', function() {
-        if (this.value === 'Monte a Sua Mango Lôko') {
-            customOptions.classList.remove('hidden');
-        } else {
-            customOptions.classList.add('hidden');
-        }
-    });
-</script>
+</body>
+</html>
 
                     </div>
                 </div>
